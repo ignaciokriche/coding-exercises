@@ -1,15 +1,16 @@
-package ar.com.kriche.recursion;
-
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Stack;
-
 /**
  * A solution to the classic problem of the towers of Hanoi removing recursion calls.
  * There are other ways to solve this (see tail recursion).
  *
  * @author Kriche
  */
+
+package ar.com.kriche.recursion;
+
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Stack;
+
 public class HanoiStack {
 
     private final Writer out;
