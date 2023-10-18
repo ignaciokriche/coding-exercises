@@ -23,15 +23,16 @@ public class PrintHistogram {
         int[] columns = {8, 3, 5, 8, 4, 0, 6, 1, 7, 5, 2};
 
         System.out.println("Histogram:\n");
-        printHistogram(columns, Arrays.stream(columns).max().getAsInt());
+        printHistogram(columns);
         System.out.println();
 
     }
 
-    private static void printHistogram(int[] values, int maxHeight) {
+    private static void printHistogram(int[] histo) {
+        int maxHeight = Arrays.stream(histo).max().getAsInt();
         for (int r = maxHeight; r > 0; r--) {
-            for (int c = 0; c < values.length; c++) {
-                int value = values[c];
+            for (int c = 0; c < histo.length; c++) {
+                int value = histo[c];
                 if (value >= r) {
                     System.out.print(" # ");
                 } else {
