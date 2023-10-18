@@ -1,18 +1,24 @@
+/**
+ * @author Kriche
+ */
+
 package ar.com.kriche.recursion;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * @author Kriche
- */
 public class PowerSet {
 
+    /**
+     * @param set not null
+     * @return the power set.
+     */
     public static Set<Set<Integer>> powerSet(Set<Integer> set) {
 
+        Set<Set<Integer>> powerSet = new HashSet<>();
+
         if (set.isEmpty()) {
-            Set<Set<Integer>> powerSet = new HashSet<>();
             powerSet.add(set);
             return powerSet;
         }
@@ -22,7 +28,6 @@ public class PowerSet {
         Set<Set<Integer>> powerSetSubSetWithoutElement = powerSet(subSetWithoutElement);
         Set<Set<Integer>> powerSetSubSetWithElement = addElementToAll(powerSetSubSetWithoutElement, element);
 
-        Set<Set<Integer>> powerSet = new HashSet<>();
         powerSet.addAll(powerSetSubSetWithoutElement);
         powerSet.addAll(powerSetSubSetWithElement);
 
