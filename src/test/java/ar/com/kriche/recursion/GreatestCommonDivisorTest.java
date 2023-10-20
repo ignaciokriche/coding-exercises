@@ -1,3 +1,7 @@
+/**
+ * @author Kriche
+ */
+
 package ar.com.kriche.recursion;
 
 import org.junit.jupiter.api.Test;
@@ -9,6 +13,8 @@ public class GreatestCommonDivisorTest {
 
     @Test
     public void GreatestCommonDivisorTest() {
+
+        assertEquals(0, computeGreatestCommonDivisor(0, 0));
 
         assertEquals(8, computeGreatestCommonDivisor(8, 0));
         assertEquals(8, computeGreatestCommonDivisor(0, 8));
@@ -24,6 +30,6 @@ public class GreatestCommonDivisorTest {
         assertEquals(41, computeGreatestCommonDivisor(82, 123));
 
         assertEquals(6, computeGreatestCommonDivisor(54, 24));
-        
+
     }
 }
