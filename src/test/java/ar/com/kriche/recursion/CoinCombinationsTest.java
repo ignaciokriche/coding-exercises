@@ -27,10 +27,36 @@ class CoinCombinationsTest {
     }
 
     @Test
+    void oneCoinCombinationTest() {
+
+        int amount = 1;
+        Integer[] coins = new Integer[]{10, 1, 8};
+
+        Set<List<Integer>> combinations = computeCoinCombinations(amount, coins);
+
+        Set<List<Integer>> expected = Set.of(List.of(1));
+
+        assertEquals(expected, combinations);
+    }
+
+    @Test
+    void oneCombinationTest() {
+
+        int amount = 3;
+        Integer[] coins = new Integer[]{10, 1, 8};
+
+        Set<List<Integer>> combinations = computeCoinCombinations(amount, coins);
+
+        Set<List<Integer>> expected = Set.of(List.of(1, 1, 1));
+
+        assertEquals(expected, combinations);
+    }
+
+    @Test
     void combinationsTest() {
 
         int amount = 21;
-        Integer[] coins = new Integer[]{2, 5, 10};
+        Integer[] coins = new Integer[]{5, 10, 2};
 
         Set<List<Integer>> combinations = computeCoinCombinations(amount, coins);
 
