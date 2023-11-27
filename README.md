@@ -2,7 +2,7 @@
 
 ### Running:
 
-Java 18 (or higher) and Maven (3.6.3) or higher must be installed.
+Java 18 (or higher) and Maven 3.6.3 (or higher) must be installed.
 
 1. open a terminal and `cd` to the root directory.
 2. enter the command: `mvn test`.
