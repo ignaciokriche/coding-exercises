@@ -1,3 +1,9 @@
+/**
+ * String related exercises.
+ *
+ * @author Kriche
+ */
+
 package ar.com.kriche;
 
 import org.jetbrains.annotations.NotNull;
@@ -5,11 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * String related exercises.
- *
- * @author Kriche
- */
 public class Strings {
 
     /**
@@ -251,5 +252,240 @@ public class Strings {
         return compressed.length() < str.length() ? compressed.toString() : str;
 
     }
+
+
+    /**
+     * @param words
+     * @return the length of the last word. a word is a string with no ' ' character.
+     */
+    public static int lastWordLength(@NotNull String words) {
+        words = words.trim(); // avoids error with strings such as "hello     "
+        int lastSpaceIndex = words.lastIndexOf(' ');
+        return lastSpaceIndex == -1 ? words.length() : words.length() - lastSpaceIndex - 1;
+    }
+
+    /**
+     * @param words
+     * @return words grouped together by anagram, this is word1 and word2 will be in the same set only if
+     * word1 and word2 are anagrams.
+     */
+    public static Set<Set<String>> groupAnagrams(@NotNull Set<String> words) {
+        Map<String, Set<String>> grouped = new HashMap<>();
+        words.forEach(w -> {
+            // we need a function f(w) = k such as f(w1) = f(w2) only if w1 is an anagram of w2.
+            // this function will be the key for our map of anagrams.
+            // since an anagram of a word is a permutation of the word letters, we can sort the letters of the word and
+            // that will give us the function we are looking for.
+            String sorted = sortChars(w);
+            Set<String> anagramGroup = grouped.get(sorted);
+            if (anagramGroup == null) {
+                anagramGroup = new HashSet<>();
+                grouped.put(sorted, anagramGroup);
+            }
+            anagramGroup.add(w);
+        });
+        return grouped.values().stream().collect(Collectors.toSet());
+    }
+
+    private static String sortChars(@NotNull String w) {
+        char[] chars = w.toCharArray();
+        Arrays.sort(chars);
+        return String.valueOf(chars).intern();
+    }
+
+    /**
+     * @param str
+     * @return all str substrings.
+     */
+    public static Set<String> subStrings(@NotNull String str) {
+        Set<String> subStrings = new HashSet<>();
+        for (int lh = 0; lh < str.length(); lh++) {
+            for (int rh = lh; rh < str.length(); rh++) {
+                subStrings.add(str.substring(lh, rh + 1));
+            }
+        }
+        return subStrings;
+    }
+
+    /**
+     * @param str
+     * @return the length of the longest substring without repeating characters.
+     */
+    public static int longestSubStrNoDupCharsLength(String str) {
+        if (str == null) {
+            return -1;
+        }
+        if (true) {
+            return longestSubStrNoDupCharsLength2(str);
+        }
+        return longestSubStrNoDupCharsLength(str, str.length());
+    }
+
+    /**
+     * @param str
+     * @param maxLength substrings of bigger length will be ignored. A negative value means no limit.
+     * @return the length of the longest substring without repeating characters and no greater than maxLength.
+     */
+    public static int longestSubStrNoDupCharsLength(String str, int maxLength) {
+
+        if (str == null) {
+            return -1;
+        }
+        if (str.isEmpty()) {
+            return 0;
+        }
+
+        Set<Character> visited = new HashSet<>();
+        int maxFound = 0;
+        int lh, rh;
+        for (lh = 0, rh = 0; rh < str.length(); rh++) {
+            Character ch = str.charAt(rh);
+            int currentMax = rh - lh + 1;
+            if (visited.contains(ch)) {
+                currentMax--;
+                char leftCh;
+                do {
+                    leftCh = str.charAt(lh++);
+                    visited.remove(leftCh);
+                } while (leftCh != ch);
+            }
+            maxFound = newMax(currentMax, maxFound, maxLength);
+            visited.add(ch);
+        }
+        return maxFound;
+    }
+
+    //TODO which one looks better?
+    public static int longestSubStrNoDupCharsLength2(String str) {
+
+        int maxLength = 0, currentLength = 0;
+        int left = 0;
+        Set<Character> visited = new HashSet<>();
+
+        for (int right = 0; right < str.length(); right++) {
+            char ch = str.charAt(right);
+            if (visited.contains(ch)) {
+                char leftCh;
+                do {
+                    leftCh = str.charAt(left++);
+                    visited.remove(leftCh);
+                    currentLength--;
+                } while (ch != leftCh);
+            }
+            currentLength++;
+            maxLength = Math.max(maxLength, currentLength);
+            visited.add(ch);
+        }
+
+        return maxLength;
+
+    }
+
+    /**
+     * @param currentMax
+     * @param oldMax     cannot be greater than maxLimit.
+     * @param maxLimit
+     * @return the biggest value between oldMax and currentMax provided this value is no greater than maxLimit or
+     * maxLimit is negative. oldMax, otherwise.
+     */
+    private static int newMax(int currentMax, int oldMax, int maxLimit) {
+        if (maxLimit < 0 || currentMax <= maxLimit) {
+            return currentMax > oldMax ? currentMax : oldMax;
+        }
+        return oldMax;
+    }
+
+    /**
+     * @param compressed a string with the format:
+     *                   str = letters
+     *                   str = [str]
+     *                   str = number[str]
+     *                   where number indicates the positive amount of times to expand the value between brackets.
+     *                   number can be omitted, which means to expand only once.
+     *                   <p>
+     *                   Examples:
+     *                   "2[ab]" -> "abab"
+     *                   "ab" -> "ab"
+     *                   "2[ab]d3[k]2[m]g2[ob]" -> "ababdkkkmmgobob"
+     *                   "3[abc2[de]]" -> "abcdedeabcdedeabcdede"
+     *                   "3[abc2[de]o2[qw]]" -> "abcdedeoqwqwabcdedeoqwqwabcdedeoqwqw
+     * @return the expanded form of the string.
+     */
+    public static String expandStr(@NotNull String compressed) {
+        String repeatNumber = "";
+        StringBuilder expanded = new StringBuilder();
+        for (int i = 0; i < compressed.length(); i++) {
+            char ch = compressed.charAt(i);
+            if (Character.isDigit(ch)) {
+                repeatNumber += ch;
+            } else {
+                if (ch == ']') {
+                    throw new IllegalArgumentException(String.format("unexpected ']' at index: %d", i));
+                }
+                if (ch == '[') {
+                    int right = findClosingBracket(compressed, i + 1);
+                    if (right < 0) {
+                        throw new IllegalArgumentException("unterminated expression");
+                    }
+                    String innerExpanded = expandStr(compressed.substring(i + 1, right));
+                    if (repeatNumber.isEmpty()) {
+                        expanded.append(innerExpanded);
+                    } else {
+                        expanded.append(innerExpanded.repeat(Integer.valueOf(repeatNumber)));
+                    }
+                    repeatNumber = "";
+                    i = right;
+                } else {
+                    // is a letter:
+                    expanded.append(ch);
+                }
+            }
+        }
+        return expanded.toString();
+    }
+
+    private static int findClosingBracket(@NotNull String str, int left) {
+        int balance = 1;
+        for (int i = left; i < str.length(); i++) {
+            Character ch = str.charAt(i);
+            if (ch == '[') {
+                balance++;
+            } else if (ch == ']') {
+                balance--;
+            }
+            if (balance == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * @param numbers
+     * @return the subarray with the biggest sum.
+     */
+    public static int[] maxSubArraySum(@NotNull int[] numbers) {
+        if (numbers.length == 0) {
+            return new int[]{};
+        }
+        // Kadane’s Algorithm:
+        int maxEndingHere = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int maxSumLeftIndex = 0, maxSumRightIndex = 0, currentSumIndex = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            maxEndingHere += numbers[i];
+            if (maxEndingHere > maxSum) {
+                maxSum = maxEndingHere;
+                maxSumLeftIndex = currentSumIndex;
+                maxSumRightIndex = i;
+            }
+            if (maxEndingHere < 0) {
+                currentSumIndex = i + 1;
+                maxEndingHere = 0;
+            }
+        }
+        return Arrays.copyOfRange(numbers, maxSumLeftIndex, maxSumRightIndex + 1);
+    }
+
 
 }
