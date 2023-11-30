@@ -309,6 +309,36 @@ public class Strings {
 
     /**
      * @param str
+     * @param substr      cannot be empty.
+     * @param overlapping
+     * @return the amount of times substr is present in str.
+     */
+    public static int substringCount(@NotNull String str, @NotNull String substr, boolean overlapping) {
+
+        if (substr.isEmpty()) {
+            throw new IllegalArgumentException("substring cannot be empty.");
+        }
+        if (str.length() < substr.length()) {
+            return 0;
+        }
+
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (substr.length() > str.length() - i) {
+                break;
+            }
+            if (str.substring(i, i + substr.length()).equals(substr)) {
+                count++;
+                if (!overlapping) {
+                    i += substr.length() - 1;
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * @param str
      * @return the length of the longest substring without repeating characters.
      */
     public static int longestSubStrNoDupCharsLength(String str) {
@@ -459,5 +489,5 @@ public class Strings {
         }
         return -1;
     }
-    
+
 }

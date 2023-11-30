@@ -299,4 +299,29 @@ public class StringsTest {
                 expandStr("3[2[2[3[p]2[1[gy3[za]]]]]]"));
     }
 
+    @Test
+    public void substringCountTest() {
+        assertEquals(0, substringCount("hello world", "happy", true));
+        assertEquals(1, substringCount("hello world", "hello", true));
+        assertEquals(1, substringCount("hello world", "hello world", true));
+        assertEquals(2, substringCount("hello world hello", "hello", true));
+        assertEquals(2, substringCount("hello world hello world", "hello", true));
+        assertEquals(1, substringCount("hehello world", "hello", true));
+        assertEquals(2, substringCount("hehello hello world", "hello", true));
+        assertEquals(2, substringCount("hehello world helllo hello world", "hello", true));
+        assertEquals(3, substringCount("barata la batata", "ata", true));
+        assertEquals(3, substringCount("barata la batatas", "ata", true));
+
+        assertEquals(0, substringCount("hello world", "happy", false));
+        assertEquals(1, substringCount("hello world", "hello", false));
+        assertEquals(1, substringCount("hello world", "hello world", false));
+        assertEquals(2, substringCount("hello world hello", "hello", false));
+        assertEquals(2, substringCount("hello world hello world", "hello", false));
+        assertEquals(1, substringCount("hehello world", "hello", false));
+        assertEquals(2, substringCount("hehello hello world", "hello", false));
+        assertEquals(2, substringCount("hehello world helllo hello world", "hello", false));
+        assertEquals(2, substringCount("barata la batata", "ata", false));
+        assertEquals(2, substringCount("barata la batatas", "ata", false));
+    }
+
 }
