@@ -345,50 +345,21 @@ public class Strings {
         if (str == null) {
             return -1;
         }
-        if (true) {
-            return longestSubStrNoDupCharsLength2(str);
-        }
         return longestSubStrNoDupCharsLength(str, str.length());
     }
 
     /**
      * @param str
-     * @param maxLength substrings of bigger length will be ignored. A negative value means no limit.
+     * @param maxLimit substrings of bigger length will be ignored. A negative value means no limit.
      * @return the length of the longest substring without repeating characters and no greater than maxLength.
      */
-    public static int longestSubStrNoDupCharsLength(String str, int maxLength) {
+    public static int longestSubStrNoDupCharsLength(String str, final int maxLimit) {
 
         if (str == null) {
             return -1;
         }
-        if (str.isEmpty()) {
-            return 0;
-        }
 
-        Set<Character> visited = new HashSet<>();
-        int maxFound = 0;
-        int lh, rh;
-        for (lh = 0, rh = 0; rh < str.length(); rh++) {
-            Character ch = str.charAt(rh);
-            int currentMax = rh - lh + 1;
-            if (visited.contains(ch)) {
-                currentMax--;
-                char leftCh;
-                do {
-                    leftCh = str.charAt(lh++);
-                    visited.remove(leftCh);
-                } while (leftCh != ch);
-            }
-            maxFound = newMax(currentMax, maxFound, maxLength);
-            visited.add(ch);
-        }
-        return maxFound;
-    }
-
-    //TODO which one looks better?
-    public static int longestSubStrNoDupCharsLength2(String str) {
-
-        int maxLength = 0, currentLength = 0;
+        int maxFound = 0, currentMax = 0;
         int left = 0;
         Set<Character> visited = new HashSet<>();
 
@@ -399,27 +370,27 @@ public class Strings {
                 do {
                     leftCh = str.charAt(left++);
                     visited.remove(leftCh);
-                    currentLength--;
+                    currentMax--;
                 } while (ch != leftCh);
             }
-            currentLength++;
-            maxLength = Math.max(maxLength, currentLength);
+            currentMax++;
+            maxFound = maxLimited(currentMax, maxFound, maxLimit);
             visited.add(ch);
         }
 
-        return maxLength;
+        return maxFound;
 
     }
 
     /**
      * @param currentMax
-     * @param oldMax     cannot be greater than maxLimit.
-     * @param maxLimit
-     * @return the biggest value between oldMax and currentMax provided this value is no greater than maxLimit or
-     * maxLimit is negative. oldMax, otherwise.
+     * @param oldMax     cannot be greater than limit.
+     * @param limit
+     * @return the biggest value between oldMax and currentMax provided this value is no greater than limit or
+     * limit is negative. oldMax, otherwise.
      */
-    private static int newMax(int currentMax, int oldMax, int maxLimit) {
-        if (maxLimit < 0 || currentMax <= maxLimit) {
+    private static int maxLimited(int currentMax, int oldMax, int limit) {
+        if (limit < 0 || currentMax <= limit) {
             return currentMax > oldMax ? currentMax : oldMax;
         }
         return oldMax;
