@@ -32,7 +32,7 @@ public class MostFrequentNumbers {
         return frequency.entrySet().stream()
                 .sorted((e1, e2) -> e2.getValue() - e1.getValue())
                 .limit(k)
-                .map(Map.Entry::getKey).mapToInt(Integer::intValue)
+                .mapToInt(Map.Entry::getKey)
                 .toArray();
     }
 }
