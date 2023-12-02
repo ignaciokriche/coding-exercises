@@ -143,23 +143,23 @@ public class Strings {
         }
 
         // to build a palindrome, for each letter we need another one to keep symmetry:
-        // if we put one 'x' to the left then we balance by adding other 'x' to the right.
-        // there could only at most be one letter in the middle with no match and in this case the total length of the
-        // string will be odd.
+        // we need to pair all the letters (except at most for one, eg "aba")
+        // once a pair is formed we can remove it:
+        Set<Character> visited = new HashSet<>();
 
-        Map<Character, Integer> charCount = new HashMap<>();
-        str.chars().mapToObj(intValue -> (char) intValue).forEach(ch -> {
-            Integer count = charCount.get(ch);
-            count = count == null ? 1 : count + 1;
-            charCount.put(ch, count);
-        });
-
-        if (str.length() % 2 == 0) {
-            // there must not be any char with count odd
-            return charCount.values().stream().noneMatch(count -> count % 2 == 1);
+        for (int i = 0; i < str.length(); i++) {
+            Character ch = str.charAt(i);
+            if (visited.contains(ch)) {
+                // remove the pair
+                visited.remove(ch);
+            } else {
+                // add the char to form a pair later
+                visited.add(ch);
+            }
         }
-        // there could be at most 1 char with count odd
-        return charCount.values().stream().filter(count -> count % 2 == 1).count() < 2;
+
+        // there could be a most 1 char unpaired:
+        return visited.size() <= 1;
     }
 
     /**
