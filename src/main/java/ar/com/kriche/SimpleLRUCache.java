@@ -1,15 +1,16 @@
-package ar.com.kriche;
-
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-
-
 /**
  * Discards the least recently used items first.
  * The methods get and put must each run in O(1) average time complexity.
  *
  * @author Kriche
  */
+
+package ar.com.kriche;
+
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+
+
 public class SimpleLRUCache {
 
     private final int capacity;
@@ -20,9 +21,9 @@ public class SimpleLRUCache {
      * The list will keep track of the element to be removed (if capacity is full).
      * It is important that the list is doubly linked, so we can remove any node in constant time.
      * Here I'm using a LinkedHashMap for both the map and the list.
-     * There could be some performance degradation for the ({@code get} operation but overall I think it is acceptable.
+     * There could be some performance degradation for the {@code get} operation but overall I think it is acceptable.
      * According to its documentation:
-     * This class provides all of the optional Map operations, and
+     * This class provides all the optional Map operations, and
      * permits null elements. Like HashMap, it provides constant-time
      * performance for the basic operations ({@code add}, {@code contains} and
      * {@code remove}), assuming the hash function disperses elements
