@@ -22,6 +22,46 @@ public class Strings {
     }
 
     /**
+     * @param words a string containing words (separated by a ' ').
+     * @return a string with the words in reverse order.
+     * Example:
+     * hello world
+     * world hello
+     */
+    public static String reverseWords(@NotNull String words) {
+
+        char[] wordsArray = words.toCharArray();
+
+        // first reverse the string as a whole:
+        reverse(wordsArray, 0, wordsArray.length);
+
+        // then reverse each word:
+        int left = 0, right = 0;
+        for (; right < wordsArray.length; right++) {
+            if (wordsArray[right] == ' ') {
+                reverse(wordsArray, left, right);
+                left = right + 1;
+            }
+        }
+        reverse(wordsArray, left, right);
+
+        return String.valueOf(wordsArray);
+    }
+
+    /**
+     * @param chars
+     * @param beginIndex the beginning index, inclusive.
+     * @param endIndex   the ending index, exclusive.
+     */
+    private static void reverse(char[] chars, int beginIndex, int endIndex) {
+        for (int left = beginIndex, right = endIndex - 1; left < right; left++, right--) {
+            char aux = chars[left];
+            chars[left] = chars[right];
+            chars[right] = aux;
+        }
+    }
+
+    /**
      * What if you cannot use additional data structures?
      *
      * @return if str has all unique characters.

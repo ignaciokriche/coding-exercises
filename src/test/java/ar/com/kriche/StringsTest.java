@@ -324,4 +324,16 @@ public class StringsTest {
         assertEquals(2, substringCount("barata la batatas", "ata", false));
     }
 
+    @Test
+    public void reverseWordsTest() {
+        assertEquals("", reverseWords(""));
+        assertEquals("a", reverseWords("a"));
+        assertEquals("ab", reverseWords("ab"));
+        assertEquals("b a", reverseWords("a b"));
+        assertEquals("cd ab", reverseWords("ab cd"));
+        assertEquals("world hello", reverseWords("hello world"));
+        assertEquals(" krichevsky ignacio", reverseWords("ignacio krichevsky "));
+        assertEquals("krichevsky ignacio pablo", reverseWords("pablo ignacio krichevsky"));
+        assertEquals(" krichevsky  ignacio   pablo    ", reverseWords("    pablo   ignacio  krichevsky "));
+    }
 }
