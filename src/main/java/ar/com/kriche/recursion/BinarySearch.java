@@ -16,14 +16,14 @@ public class BinarySearch {
         System.out.println("index for number: " + number + " is: " + binarySearchIterative(numbers, number) + ".");
     }
 
-    private static int binarySearch(Object[] arr, Object key) {
+    public static int binarySearch(Object[] arr, Object key) {
         return binarySearchRecursive(arr, 0, arr.length - 1, key);
     }
 
-    private static int binarySearchIterative(Object[] arr, Object key) {
+    // check java.util.Arrays.binarySearch
+    public static int binarySearchIterative(Object[] arr, Object key) {
         return binarySearchIterative(arr, 0, arr.length - 1, key);
     }
-
 
     private static int binarySearchRecursive(Object[] arr, int left, int right, Object key) {
         if (left > right) {
@@ -40,8 +40,7 @@ public class BinarySearch {
         return binarySearchRecursive(arr, left, index - 1, key);
     }
 
-
-    private static int binarySearchIterative(Object[] arr, int left, int right, Object key) {
+    public static int binarySearchIterative(Object[] arr, int left, int right, Object key) {
         while (left <= right) {
             int index = (left + right) / 2;
             int cmp = ((Comparable) arr[index]).compareTo(key);
