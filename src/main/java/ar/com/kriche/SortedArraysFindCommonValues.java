@@ -2,10 +2,8 @@ package ar.com.kriche;
 
 import java.util.Arrays;
 
-import static ar.com.kriche.recursion.BinarySearch.binarySearchIterative;
 
 public class SortedArraysFindCommonValues {
-
 
     /**
      * @param arr1 not null sorted array with no duplicate values.
@@ -36,28 +34,6 @@ public class SortedArraysFindCommonValues {
 
     }
 
-    /**
-     * @param arr1 not null sorted array with no duplicate values.
-     * @param arr2 not null sorted array with no duplicate values.
-     * @return a new array with the values in common between arr1 and arr2.
-     */
-    public static Integer[] sortedArraysFindCommonValueBinarySearch(Integer[] arr1, Integer[] arr2) {
-
-        Integer[] commonValues = new Integer[Math.min(arr1.length, arr2.length)];
-        int k = 0;
-
-        int left = 0;
-        final int right = arr2.length - 1;
-        for (int i = 0; i < arr1.length; i++) {
-            int foundIndex = binarySearchIterative(arr2, left, right, arr1[i]);
-            if (foundIndex > -1) {
-                commonValues[k++] = arr1[i];
-                left = foundIndex + 1;
-            }
-        }
-        return Arrays.copyOf(commonValues, k);
-    }
-
 
     /**
      * @param arr1 not null sorted array with no duplicate values.
@@ -83,6 +59,7 @@ public class SortedArraysFindCommonValues {
             int indexSmallerValue = -1;
             right = arr2.length - 1;
 
+            // binary search:
             while (!found && left <= right) {
                 index = (left + right) / 2;
                 int diff = value - arr2[index];
@@ -109,6 +86,5 @@ public class SortedArraysFindCommonValues {
 
         return Arrays.copyOf(commonValues, k);
     }
-
 
 }

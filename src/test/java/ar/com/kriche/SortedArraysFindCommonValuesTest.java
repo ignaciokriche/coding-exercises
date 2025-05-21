@@ -3,7 +3,6 @@ package ar.com.kriche;
 import org.junit.jupiter.api.Test;
 
 import static ar.com.kriche.SortedArraysFindCommonValues.sortedArraysFindCommonValueBinarySearchOptimized;
-import static ar.com.kriche.SortedArraysFindCommonValues.sortedArraysFindCommonValueBinarySearch;
 import static ar.com.kriche.SortedArraysFindCommonValues.sortedArraysFindCommonValues;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -26,9 +25,6 @@ public class SortedArraysFindCommonValuesTest {
 
         assertArrayEquals(expected, sortedArraysFindCommonValues(arr1, arr2));
         assertArrayEquals(expected, sortedArraysFindCommonValues(arr2, arr1));
-
-        assertArrayEquals(expected, sortedArraysFindCommonValueBinarySearch(arr1, arr2));
-        assertArrayEquals(expected, sortedArraysFindCommonValueBinarySearch(arr2, arr1));
 
         assertArrayEquals(expected, sortedArraysFindCommonValueBinarySearchOptimized(arr1, arr2));
         assertArrayEquals(expected, sortedArraysFindCommonValueBinarySearchOptimized(arr2, arr1));

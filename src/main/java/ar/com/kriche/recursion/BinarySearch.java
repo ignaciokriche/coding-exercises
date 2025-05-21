@@ -40,7 +40,7 @@ public class BinarySearch {
         return binarySearchRecursive(arr, left, index - 1, key);
     }
 
-    public static int binarySearchIterative(Object[] arr, int left, int right, Object key) {
+    private static int binarySearchIterative(Object[] arr, int left, int right, Object key) {
         while (left <= right) {
             int index = (left + right) / 2;
             int cmp = ((Comparable) arr[index]).compareTo(key);
