@@ -1,9 +1,9 @@
-package ar.com.kriche;
+package ar.com.kriche.list;
 
 import org.junit.jupiter.api.Test;
 
-import static ar.com.kriche.Lists.*;
-import static ar.com.kriche.Lists.LinkedNode.fromArray;
+import static ar.com.kriche.list.Lists.*;
+import static ar.com.kriche.list.Lists.LinkedNode.fromArray;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

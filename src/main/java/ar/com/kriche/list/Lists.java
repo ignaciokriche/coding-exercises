@@ -1,4 +1,4 @@
-package ar.com.kriche;
+package ar.com.kriche.list;
 
 import org.jetbrains.annotations.NotNull;
 
