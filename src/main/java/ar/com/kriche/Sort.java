@@ -4,7 +4,6 @@
 
 package ar.com.kriche;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Sort {
 
@@ -15,7 +14,7 @@ public class Sort {
      * @param arr2
      * @param merged
      */
-    public static void mergeSorted(@NotNull int[] arr1, @NotNull int[] arr2, @NotNull int[] merged) {
+    public static void mergeSorted(int[] arr1, int[] arr2, int[] merged) {
         int index1 = 0, index2 = 0, mergedIndex = 0;
         int v1, v2;
         while (index1 < arr1.length && index2 < arr2.length) {

@@ -1,6 +1,6 @@
 package ar.com.kriche;
 
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Matrix related exercises.
@@ -13,7 +13,7 @@ public class Matrix {
      * Given a NxN matrix, write a method to rotate the image by 90 degrees.
      * Can you do this in place?
      */
-    public static void rotateSquareMatrix(@NotNull int[][] matrix) {
+    public static void rotateSquareMatrix(int[][] matrix) {
 
         if (matrix.length == 0) {
             return;
@@ -60,7 +60,7 @@ public class Matrix {
     /**
      * if an element in matrix is 0, its entire row and column are set to 0.
      */
-    public static void zeroMatrix(@NotNull int[][] matrix) {
+    public static void zeroMatrix(int[][] matrix) {
 
         if (matrix.length == 0 || matrix[0].length == 0) {
             return;

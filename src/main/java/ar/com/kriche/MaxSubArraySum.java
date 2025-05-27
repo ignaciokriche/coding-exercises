@@ -3,7 +3,6 @@
  */
 package ar.com.kriche;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
@@ -13,7 +12,7 @@ public class MaxSubArraySum {
      * @param numbers
      * @return the subarray with the biggest sum.
      */
-    public static int[] maxSubArraySum(@NotNull int[] numbers) {
+    public static int[] maxSubArraySum(int[] numbers) {
         if (numbers.length == 0) {
             return new int[]{};
         }

@@ -6,7 +6,6 @@
 
 package ar.com.kriche;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,7 +15,7 @@ public class Strings {
     /**
      * @return if str has all unique characters.
      */
-    public static boolean isUnique(@NotNull String str) {
+    public static boolean isUnique(String str) {
         Set<Character> chars = str.chars().mapToObj(intValue -> (char) intValue).collect(Collectors.toSet());
         return str.length() == chars.size(); // only if all chars are unique then lengths will be equal.
     }
@@ -28,7 +27,7 @@ public class Strings {
      * hello world
      * world hello
      */
-    public static String reverseWords(@NotNull String words) {
+    public static String reverseWords(String words) {
 
         char[] wordsArray = words.toCharArray();
 
@@ -66,7 +65,7 @@ public class Strings {
      *
      * @return if str has all unique characters.
      */
-    public static boolean isUniqueNoDataStructures(@NotNull String str) {
+    public static boolean isUniqueNoDataStructures(String str) {
         // search each char to the right:
         char ch;
         for (int i = 0; i < str.length(); i++) {
@@ -85,7 +84,7 @@ public class Strings {
      *
      * @return true if str1 is a permutation of str2.
      */
-    public static boolean checkPermutation(@NotNull String str1, @NotNull String str2) {
+    public static boolean checkPermutation(String str1, String str2) {
 
         if (str1 == str2) {
             return true;
@@ -113,7 +112,7 @@ public class Strings {
      * You may assume that the string has sufficient space at the end to hold the additional characters, and that you
      * are given the "true" length of the string.
      */
-    public static String urlifyNoRegEx(@NotNull String str) {
+    public static String urlifyNoRegEx(String str) {
         if (str.isEmpty()) {
             return str;
         }
@@ -126,7 +125,7 @@ public class Strings {
      * You may assume that the string has sufficient space at the end to hold the additional characters, and that you
      * are given the "true" length of the string.
      */
-    public static String urlifyStringBuilder(@NotNull String str) {
+    public static String urlifyStringBuilder(String str) {
         StringBuilder stringBuilder = new StringBuilder(str.length());
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
@@ -145,7 +144,7 @@ public class Strings {
      * You may assume that the string has sufficient space at the end to hold the additional characters, and that you
      * are given the "true" length of the string.
      */
-    public static void urlifyArray(@NotNull char[] chars) {
+    public static void urlifyArray(char[] chars) {
         for (int i = 0; i < chars.length; i++) {
             char ch = chars[i];
             if (ch == ' ') {
@@ -163,7 +162,7 @@ public class Strings {
      * You may assume that the string has sufficient space at the end to hold the additional characters, and that you
      * are given the "true" length of the string.
      */
-    public static String urlifyRegEx(@NotNull String str) {
+    public static String urlifyRegEx(String str) {
         return str.replaceAll(" ", "%20");
     }
 
@@ -175,7 +174,7 @@ public class Strings {
      *
      * @return true only if str is a permutation of a palindrome.
      */
-    public static boolean palindromePermutation(@NotNull String str) {
+    public static boolean palindromePermutation(String str) {
 
         // we need to check if a palindrome can be built using str characters.
         if (str.isEmpty()) {
@@ -209,7 +208,7 @@ public class Strings {
      *
      * @return true only if str1 is 0 or 1 edit away from str2.
      */
-    public static boolean oneAway(@NotNull String str1, @NotNull String str2) {
+    public static boolean oneAway(String str1, String str2) {
 
         if (str1 == str2) {
             return true;
@@ -262,7 +261,7 @@ public class Strings {
      *
      * @return the compressed string if shorter, str otherwise.
      */
-    public static String compress(@NotNull String str) {
+    public static String compress(String str) {
 
         if (str.length() <= 2) {
             return str;
@@ -298,7 +297,7 @@ public class Strings {
      * @param words
      * @return the length of the last word. a word is a string with no ' ' character.
      */
-    public static int lastWordLength(@NotNull String words) {
+    public static int lastWordLength(String words) {
         words = words.trim(); // avoids error with strings such as "hello     "
         int lastSpaceIndex = words.lastIndexOf(' ');
         return lastSpaceIndex == -1 ? words.length() : words.length() - lastSpaceIndex - 1;
@@ -309,7 +308,7 @@ public class Strings {
      * @return words grouped together by anagram, this is word1 and word2 will be in the same set only if
      * word1 and word2 are anagrams.
      */
-    public static Set<Set<String>> groupAnagrams(@NotNull Set<String> words) {
+    public static Set<Set<String>> groupAnagrams(Set<String> words) {
         Map<String, Set<String>> grouped = new HashMap<>();
         words.forEach(w -> {
             // we need a function f(w) = k such as f(w1) = f(w2) only if w1 is an anagram of w2.
@@ -327,7 +326,7 @@ public class Strings {
         return grouped.values().stream().collect(Collectors.toSet());
     }
 
-    private static String sortChars(@NotNull String w) {
+    private static String sortChars(String w) {
         char[] chars = w.toCharArray();
         Arrays.sort(chars);
         return String.valueOf(chars).intern();
@@ -337,7 +336,7 @@ public class Strings {
      * @param str
      * @return all str substrings.
      */
-    public static Set<String> subStrings(@NotNull String str) {
+    public static Set<String> subStrings(String str) {
         Set<String> subStrings = new HashSet<>();
         for (int lh = 0; lh < str.length(); lh++) {
             for (int rh = lh; rh < str.length(); rh++) {
@@ -353,7 +352,7 @@ public class Strings {
      * @param overlapping
      * @return the amount of times substr is present in str.
      */
-    public static int substringCount(@NotNull String str, @NotNull String substr, boolean overlapping) {
+    public static int substringCount(String str, String substr, boolean overlapping) {
 
         if (substr.isEmpty()) {
             throw new IllegalArgumentException("substring cannot be empty.");
@@ -452,7 +451,7 @@ public class Strings {
      *                   "3[abc2[de]o2[qw]]" -> "abcdedeoqwqwabcdedeoqwqwabcdedeoqwqw
      * @return the expanded form of the string.
      */
-    public static String expandStr(@NotNull String compressed) {
+    public static String expandStr(String compressed) {
         String repeatNumber = "";
         StringBuilder expanded = new StringBuilder();
         for (int i = 0; i < compressed.length(); i++) {
@@ -485,7 +484,7 @@ public class Strings {
         return expanded.toString();
     }
 
-    private static int findClosingBracket(@NotNull String str, int left) {
+    private static int findClosingBracket(String str, int left) {
         int balance = 1;
         for (int i = left; i < str.length(); i++) {
             Character ch = str.charAt(i);

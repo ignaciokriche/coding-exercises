@@ -1,6 +1,6 @@
 package ar.com.kriche.recursion;
 
-import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Magic Index:
@@ -17,7 +17,7 @@ public class MagicIndex {
      * @param numbers a sorted array of distinct integers.
      * @return the index of a magic number, if present. -1, otherwise.
      */
-    public static int magicIndexOnSortedArrayDistinctNumbers(@NotNull int numbers[]) {
+    public static int magicIndexOnSortedArrayDistinctNumbers(int numbers[]) {
         return magicIndexOnSortedArrayDistinctNumbers(numbers, 0, numbers.length - 1);
     }
 
@@ -25,7 +25,7 @@ public class MagicIndex {
      * @param numbers a sorted array.
      * @return the index of a magic number, if present. -1, otherwise.
      */
-    public static int magicIndexOnSortedArray(@NotNull int numbers[]) {
+    public static int magicIndexOnSortedArray(int numbers[]) {
         return magicIndexOnSortedArray(numbers, 0, numbers.length - 1);
     }
 

@@ -1,8 +1,7 @@
 package ar.com.kriche.list;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Objects;
+
 
 /**
  * Lists related exercises.
@@ -117,7 +116,7 @@ public class Lists {
     /**
      * find the kth to last element of a singly linked list.
      */
-    public static Integer getFromLast(@NotNull LinkedNode list, int index) {
+    public static Integer getFromLast(LinkedNode list, int index) {
 
         LinkedNode kthToLast = list;
         while (kthToLast.tail != null && index > 0) {
@@ -140,7 +139,7 @@ public class Lists {
     /**
      * find the kth to last element of a singly linked list.
      */
-    public static Integer getFromLastRecursive(@NotNull LinkedNode list, int index) {
+    public static Integer getFromLastRecursive(LinkedNode list, int index) {
         LinkedNodeFromLast linkedNodeFromLast = getFromLastRecursiveHelper(list, index);
         if (linkedNodeFromLast.indexFromLast < index) {
             throw new IndexOutOfBoundsException();
@@ -153,7 +152,7 @@ public class Lists {
         public LinkedNode node;
     }
 
-    private static LinkedNodeFromLast getFromLastRecursiveHelper(@NotNull LinkedNode list, final int index) {
+    private static LinkedNodeFromLast getFromLastRecursiveHelper(LinkedNode list, final int index) {
 
         LinkedNodeFromLast linkedNodeFromLast;
         if (list.tail == null) {
@@ -174,7 +173,7 @@ public class Lists {
      * deletes a node in the middle (i.e., any node but the first and last node, not necessarily the exact middle) of a
      * singly linked list, given only access to that node.
      */
-    public static void deleteMiddleNode(@NotNull LinkedNode node) {
+    public static void deleteMiddleNode(LinkedNode node) {
         node.value = node.tail.value;
         node.tail = node.tail.tail;
     }
@@ -189,7 +188,7 @@ public class Lists {
      * Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition=5]
      * Output: 3 -> 2 -> 1 -> 10 -> 5 -> 8 -> 5
      */
-    public static LinkedNode partitionList(@NotNull LinkedNode list, Integer partition) {
+    public static LinkedNode partitionList(LinkedNode list, Integer partition) {
 
         // create a left and right list and move the nodes to them accordingly.
         // then link the right list to the end of the left list.
@@ -245,7 +244,7 @@ public class Lists {
     /**
      * @return true if a linked list is a palindrome. false otherwise.
      */
-    public static boolean isPalindrome(@NotNull LinkedNode list) {
+    public static boolean isPalindrome(LinkedNode list) {
 
         LinkedNode reversedList = null;
         LinkedNode listHead = list;

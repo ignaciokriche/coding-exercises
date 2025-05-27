@@ -5,7 +5,6 @@
  */
 package ar.com.kriche;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Roman {
 
@@ -94,7 +93,7 @@ public class Roman {
         return roman.toString();
     }
 
-    public static int toArabic(@NotNull String roman) {
+    public static int toArabic(String roman) {
         char[] romanNumerals = new char[]{'I', 'V', 'X', 'L', 'C', 'D', 'M'};
         int[] arabicValues = new int[]{1, 5, 10, 50, 100, 500, 1000};
 

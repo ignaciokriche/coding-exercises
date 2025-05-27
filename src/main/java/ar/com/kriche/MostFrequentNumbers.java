@@ -4,7 +4,6 @@
 
 package ar.com.kriche;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +15,7 @@ public class MostFrequentNumbers {
      * @param k
      * @return an array containing the k-th most frequent numbers in numbers.
      */
-    public static int[] mostFrequentNumbers(@NotNull int[] numbers, int k) {
+    public static int[] mostFrequentNumbers(int[] numbers, int k) {
         if (k <= 0) {
             return new int[]{};
         }
